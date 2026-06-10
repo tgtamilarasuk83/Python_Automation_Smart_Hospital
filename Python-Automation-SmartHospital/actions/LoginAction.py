@@ -1,11 +1,11 @@
 from pages.LoginPage import LoginPage
 from pages.HomePage import HomePage
-from actions.base_action import base_action
+from actions.base_action import BaseAction
 
-class LoginAction(base_action):
+class LoginAction(BaseAction):
 
     def __init__(self,driver):
-        super().__init__(self,driver)
+        super().__init__(driver)
 
     def validLogin(self):
         self.click(LoginPage.superAdmin)

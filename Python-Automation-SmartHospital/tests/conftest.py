@@ -1,20 +1,16 @@
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
-
+from utilities.config_reader import get_value
 
 @pytest.fixture()
 def setup():
 
-    driver = webdriver.Chrome(
-        service=Service(ChromeDriverManager().install())
-    )
-
+    driver = webdriver.Chrome()
     driver.maximize_window()
     driver.implicitly_wait(10)
 
-    driver.get("https://demo.smart-hospital.in/")
+    driver.get(get_value("config.ini","info","url"))
 
     yield driver
 

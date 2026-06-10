@@ -1,6 +1,9 @@
 from actions.LoginAction import LoginAction
+import pytest
 
-def test_validLogin(self):
-    LogAct = LoginAction(self.driver)
+@pytest.mark.usefixtures("setup")
+def test_validLogin(setup):
+    driver = setup
+    LogAct = LoginAction(driver)
     LogAct.validLogin()
     assert LogAct.assertHome()
