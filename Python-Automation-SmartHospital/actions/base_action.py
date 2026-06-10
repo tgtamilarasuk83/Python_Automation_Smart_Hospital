@@ -7,7 +7,6 @@ class BaseAction:
         self.driver = driver
         self.wait = WebDriverWait(self.driver, 10)
 
-
     def click(self, locator):
         self.wait.until(EC.visibility_of_element_located(locator)).click()
 
