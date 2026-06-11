@@ -9,9 +9,10 @@ def test_contact_us(setup):
 
     contact.submit_form(
         "Tamil",
-        "tamil@test.com",
+        "tamilarasu@test.com",
         "Automation Issue",
         "This is a test message from automation script"
     )
+    assert contact.is_success_message_displayed()
 
   
