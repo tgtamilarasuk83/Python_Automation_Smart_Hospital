@@ -16,4 +16,4 @@ class ContactUsPage:
     submit = (By.XPATH, "//input[@name='submit']")
 
     # Success Message
-    success_message = (By.XPATH, "//div[@class='alert alert-success']")
+    success_message = (By.XPATH, "//div[@class='alert alert-success' and normalize-space()='We will contact you soon.']")
