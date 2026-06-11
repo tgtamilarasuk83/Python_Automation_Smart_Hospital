@@ -16,9 +16,9 @@ class BaseAction:
 
     def get_text(self, locator):
         return self.wait.until(EC.visibility_of_element_located(locator)).text
-
     def is_displayed(self, locator):
         return self.wait.until(EC.visibility_of_element_located(locator)).is_displayed()
+    
     
     def wait_for_clickable(self, locator):
         return self.wait.until(
@@ -51,7 +51,11 @@ class BaseAction:
         EC.visibility_of_element_located(locator)
     )
 
-    def wait_for_clickable(self, locator, timeout=20):
+    def wait_for_clickable1(self, locator, timeout=20):
      return WebDriverWait(self.driver, timeout).until(
         EC.element_to_be_clickable(locator)
     )
+
+    def wait_for_text_to_be_present(self,locator,text):
+        return self.wait.until(EC.text_to_be_present_in_element(locator,text))
+
