@@ -15,3 +15,5 @@ class ContactUsAction(BaseAction):
         self.send_keys(ContactUsPage.subject, subject)
         self.send_keys(ContactUsPage.description, description)
         self.click(ContactUsPage.submit)
+    def is_success_message_displayed(self):
+       return self.is_displayed(ContactUsPage.success_message)
