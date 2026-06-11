@@ -25,12 +25,12 @@ class SearchAmbulanceCallListAction(BaseAction):
     
     def assertingvalidsearch(self):
         self.log.info("Asserted valid search of ambulance call list")
-        return get_value("config.ini","details","ambulanceNumber") in self.get_text(AmbulancePage.tableValue)
+        return get_value("config.ini","ambulance details","ambulanceNumber") in self.get_text(AmbulancePage.tableValue)
 
     
     def assertinginvalidsearch(self):
         self.log.info("Asserted invalid search of ambulance call list")
-        return get_value("config.ini","details","invalidambulancesearchmessage") in self.get_text(AmbulancePage.tableValue2)
+        return get_value("config.ini","ambulance details","invalidambulancesearchmessage") in self.get_text(AmbulancePage.tableValue2)
 
         
 
