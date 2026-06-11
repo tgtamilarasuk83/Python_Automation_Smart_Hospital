@@ -20,7 +20,7 @@ def test_emptyfieldLogin(setup):
 def test_invalidusernameLogin(setup,username):
     driver = setup
     LogAct = LoginAction(driver)
-    LogAct.invalidusername(username)
+    LogAct.invalidusername(username) 
     assert LogAct.assertinvalidusername()
     print("Test Passed")
 
