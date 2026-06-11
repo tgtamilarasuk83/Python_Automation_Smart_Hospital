@@ -6,9 +6,9 @@ from selenium.webdriver.common.by import By
 
 from actions.base_action import BaseAction
 from pages.PharmacyBillPage import PharmacyBillPage
-from utilities.logger import get_logger
+from utilities.logger import log_generator
 
-logger = get_logger()
+logger = log_generator()
 
 PHARMACY_BILL_URL = "https://demo.smart-hospital.in/admin/pharmacy/bill"
 DOWNLOADS_FOLDER = os.path.join(os.path.expanduser("~"), "Downloads")

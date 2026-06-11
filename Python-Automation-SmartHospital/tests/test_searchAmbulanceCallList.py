@@ -1,7 +1,7 @@
 from actions.SearchAmbulanceCallListAction import SearchAmbulanceCallListAction
 from actions.LoginAction import LoginAction
 import pytest
-from utilities.config_reader import get_value
+
 
 @pytest.mark.usefixtures("setup")
 def test_validSearchAmbulanceCall(setup):
