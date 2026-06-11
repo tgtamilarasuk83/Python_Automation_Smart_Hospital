@@ -8,7 +8,6 @@ log = get_logger()
 
 
 class SearchPatientAction(BaseAction):
-
     def __init__(self, driver):
         super().__init__(driver)
 

@@ -1,8 +1,5 @@
 from selenium.webdriver.common.by import By
-
-
 class SearchPatientPage:
-
     def __init__(self, driver):
         self.driver = driver
     patient_menu      = (By.XPATH, "//i[@class='fa fa-user']//following-sibling::span")
