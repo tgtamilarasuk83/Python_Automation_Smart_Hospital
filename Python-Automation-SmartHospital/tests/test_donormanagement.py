@@ -47,9 +47,9 @@ class TestDonorManagement:
         assert "Gender field is required" in validation_message
 
     @pytest.mark.parametrize(
-        "donor_name",
-        get_data("SearchDonor.xlsx", "Sheet1")
-    )
+    "donor_name",
+    get_data("SearchDonor.xlsx", "Sheet1")
+)
     def test_search_donor(self, setup, donor_name):
 
         login = LoginAction(setup)
@@ -60,6 +60,6 @@ class TestDonorManagement:
         donor.clickBloodBankMenu()
         donor.clickDonorDetails()
 
-        donor.searchDonor(donor_name)
+        donor.searchDonor(donor_name[0])
 
-        assert donor.verifyDonorName(donor_name)
+        assert donor.verifyDonorName(donor_name[0])
