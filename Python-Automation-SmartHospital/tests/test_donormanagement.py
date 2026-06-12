@@ -1,6 +1,7 @@
 from actions.LoginAction import LoginAction
 from actions.DonorManagementAction import DonorManagementAction
 from utilities.excel_reader import get_data
+from pages.DonorManagementPage import DonorManagementPage
 import pytest
 
 
@@ -25,6 +26,37 @@ class TestDonorManagement:
             "9876543210",
             "Chennai"
         )
+        assert donor.is_displayed(DonorManagementPage.donor_name)
+    @pytest.mark.parametrize(
+    "donor_name,dob,blood_group,gender",
+    get_data("DonorMandatoryField.xlsx", "Sheet1")
+)
+    
+    def test_add_donor_mandatory_fields(
+        self,
+        setup,
+        donor_name,
+        dob,
+        blood_group,
+        gender):
+
+        login = LoginAction(setup)
+        login.validLogin()
+
+        donor = DonorManagementAction(setup)
+
+        donor.clickBloodBankMenu()
+        donor.clickDonorDetails()
+
+        donor.clickAddBloodDonor()
+
+        donor.enterDonorName(donor_name)
+        donor.enterDateOfBirth(dob)
+        donor.enterBloodGroup(blood_group)
+        donor.enterGender(gender)
+
+        donor.clickSaveButton()
+        assert donor.is_displayed(DonorManagementPage.donor_name)
 
     def test_all_fields_empty(self, setup):
 
@@ -63,3 +95,4 @@ class TestDonorManagement:
         donor.searchDonor(donor_name[0])
 
         assert donor.verifyDonorName(donor_name[0])
+ 

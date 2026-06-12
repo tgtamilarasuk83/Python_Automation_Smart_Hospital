@@ -1,5 +1,6 @@
 from actions.base_action import BaseAction
 from pages.DonorManagementPage import DonorManagementPage
+from datetime import datetime
 
 
 class DonorManagementAction(BaseAction):
@@ -20,7 +21,11 @@ class DonorManagementAction(BaseAction):
         self.send_keys(DonorManagementPage.donor_name, donor_name)
 
     def enterDateOfBirth(self, dob):
+        if isinstance(dob, datetime):
+            dob = dob.strftime("%d/%m/%Y")  
+
         self.send_keys(DonorManagementPage.date_of_birth, dob)
+
 
     def enterBloodGroup(self, blood_group):
         self.send_keys(DonorManagementPage.blood_group, blood_group)
