@@ -8,3 +8,4 @@ class PharmacyBillPage:
     noDataMessage          = (By.XPATH, "//td[@class='dataTables_empty']")
     csvButton              = (By.XPATH, "//a[@title='CSV']")
     billTable              = (By.XPATH, "//table[@id='DataTables_Table_0']")
+    medicinesBtn = (By.XPATH, "//a[contains(text(),'Medicines')]")
