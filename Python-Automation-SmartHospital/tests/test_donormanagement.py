@@ -11,12 +11,9 @@ class TestDonorManagement:
 
         login = LoginAction(setup)
         login.validLogin()
-
         donor = DonorManagementAction(setup)
-
         donor.clickBloodBankMenu()
         donor.clickDonorDetails()
-
         donor.addDonor(
             "Raja",
             "12/05/1998",
@@ -29,7 +26,7 @@ class TestDonorManagement:
         assert donor.is_displayed(DonorManagementPage.donor_name)
     @pytest.mark.parametrize(
     "donor_name,dob,blood_group,gender",
-    get_data("DonorMandatoryField.xlsx", "Sheet1")
+    get_data("DonorManagement.xlsx", "DonorMandatoryField")
 )
     
     def test_add_donor_mandatory_fields(
@@ -80,7 +77,7 @@ class TestDonorManagement:
 
     @pytest.mark.parametrize(
     "donor_name",
-    get_data("SearchDonor.xlsx", "Sheet1")
+    get_data("DonorManagement.xlsx", "SearchDonor")
 )
     def test_search_donor(self, setup, donor_name):
 
