@@ -13,11 +13,19 @@ def setup():
         "download.default_directory": DOWNLOADS_FOLDER,
         "download.prompt_for_download": False,
         "download.directory_upgrade": True,
-        "safebrowsing.enabled": True
+        "safebrowsing.enabled": True,
+        "credentials_enable_service": False,
+        "profile.password_manager_enabled": False,
+        "profile.password_manager_leak_detection": False,
+        "autofill.profile_enabled": False,
+        "autofill.credit_card_enabled": False
     }
     options.add_experimental_option("prefs", prefs)
+    options.add_argument("--disable-notifications")
+    options.add_argument("--disable-popup-blocking")
 
     driver = webdriver.Chrome(options=options)
+
     driver.maximize_window()
     driver.implicitly_wait(10)
 

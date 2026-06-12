@@ -13,8 +13,8 @@ class SearchAmbulanceCallListAction(BaseAction):
 
     def searchvalidambulancecall(self):
         self.click(HomePage.ambulanceBtn)
-        self.send_keys(AmbulancePage.searchInput,get_value("config.ini","details","ambulanceNumber"))
-        self.wait_for_text_to_be_present(AmbulancePage.tableValue,get_value("config.ini","details","ambulanceNumber"))
+        self.send_keys(AmbulancePage.searchInput,get_value("config.ini","ambulance details","ambulanceNumber"))
+        self.wait_for_text_to_be_present(AmbulancePage.tableValue,get_value("config.ini","ambulance details","ambulanceNumber"))
         self.log.info("Search Valid Ambulance Call List")
 
     def searchinvalidambulancecall(self,ambulanceNumber):
