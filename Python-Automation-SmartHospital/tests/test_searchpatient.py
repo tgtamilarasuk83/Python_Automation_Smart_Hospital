@@ -1,9 +1,8 @@
 import pytest
 from actions.LoginAction import LoginAction
 from actions.SearchPatientAction import SearchPatientAction
-from utilities.logger import get_logger
-
-log = get_logger()
+from utilities.logger import log_generator
+log = log_generator()
 valid_search_data = [
     "Olivier Thomas",
     ]
