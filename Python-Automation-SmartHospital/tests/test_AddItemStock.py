@@ -32,7 +32,7 @@ def test_add_item_stock(setup):
     "Adding new stock for Syringe",
     "100",
 ]
-
+    
     data = add_stock.get_row_data()
     print(data)
 
