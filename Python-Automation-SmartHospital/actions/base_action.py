@@ -47,3 +47,6 @@ class BaseAction:
             return True
         except:
             return False
+        
+    def clear(self, locator):
+         self.wait.until(EC.visibility_of_element_located(locator)).clear()
