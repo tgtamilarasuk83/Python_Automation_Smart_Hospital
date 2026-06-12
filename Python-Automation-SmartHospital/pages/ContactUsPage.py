@@ -17,3 +17,6 @@ class ContactUsPage:
 
     # Success Message
     success_message = (By.XPATH, "//div[@class='alert alert-success' and normalize-space()='We will contact you soon.']")
+    
+    # Error Message 
+    Error_message = (By.XPATH,"/html/body/div[3]/div/div/div[1]")

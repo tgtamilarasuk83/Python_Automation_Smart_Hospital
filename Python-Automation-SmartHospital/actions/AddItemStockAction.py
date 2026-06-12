@@ -39,6 +39,7 @@ class AddItemStockAction(BaseAction):
         self.send_keys(AddNewStockPage.DESCRIPTION, description)
 
         self.click(AddNewStockPage.SAVE_BUTTON)
+        self.driver.refresh()
 
     # ---------------- TABLE DATA ---------------- #
 

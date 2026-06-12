@@ -1,13 +1,29 @@
 from actions.LoginAction import LoginAction
 from actions.DonorManagementAction import DonorManagementAction
-from utilities.excel_reader import get_data
 from pages.DonorManagementPage import DonorManagementPage
+from utilities.excel_reader import get_data as get_excel_data
+from utilities.csv_reader import get_data as get_csv_data
 import pytest
 
 
 class TestDonorManagement:
 
-    def test_add_donor(self, setup):
+    @pytest.mark.parametrize(
+    "donor_name,dob,blood_group,gender,father_name,contact_number,address",
+    get_csv_data("AddDonor.csv")
+)
+ 
+    def test_add_donor(
+    self,
+    setup,
+    donor_name,
+    dob,
+    blood_group,
+    gender,
+    father_name,
+    contact_number,
+    address
+):
 
         login = LoginAction(setup)
         login.validLogin()
@@ -18,18 +34,20 @@ class TestDonorManagement:
         donor.clickDonorDetails()
 
         donor.addDonor(
-            "Raja",
-            "12/05/1998",
-            "B+",
-            "Male",
-            "Ramesh",
-            "9876543210",
-            "Chennai"
-        )
+        donor_name,
+        dob,
+        blood_group,
+        gender,
+        father_name,
+        contact_number,
+        address
+    )
+
         assert donor.is_displayed(DonorManagementPage.donor_name)
+
     @pytest.mark.parametrize(
     "donor_name,dob,blood_group,gender",
-    get_data("DonorMandatoryField.xlsx", "Sheet1")
+    get_excel_data("DonorManagement.xlsx", "DonorMandatoryField")
 )
     
     def test_add_donor_mandatory_fields(
@@ -80,7 +98,7 @@ class TestDonorManagement:
 
     @pytest.mark.parametrize(
     "donor_name",
-    get_data("SearchDonor.xlsx", "Sheet1")
+    get_excel_data("DonorManagement.xlsx", "SearchDonor")
 )
     def test_search_donor(self, setup, donor_name):
 
