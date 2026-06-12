@@ -30,6 +30,9 @@ class BaseAction:
     def wait_for_text_to_be_present(self,locator,text):
         return self.wait.until(EC.text_to_be_present_in_element(locator,text))
     
+    def wait_for_value_to_be_present(self, locator, text):
+        return self.wait.until(EC.text_to_be_present_in_element_value(locator, text))
+    
     def select_by_visible_text(self,locator,text):
         element = self.wait.until(EC.visibility_of_element_located(locator))
         select = Select(element)
@@ -47,3 +50,11 @@ class BaseAction:
             return True
         except:
             return False
+    
+    def select_date(self,element,date):
+        ele = self.driver.find_element(*element)
+        self.driver.execute_script("arguments[0].value=arguments[1];",ele,date)
+    
+    def jsclick(self, locator):
+        self.wait.until(EC.visibility_of_element_located(locator)).driver.execute_script("arguments[0].click();",locator)
+

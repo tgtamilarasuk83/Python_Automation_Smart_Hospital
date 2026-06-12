@@ -2,10 +2,9 @@ import time
 from selenium.webdriver.support import expected_conditions as EC
 from actions.base_action import BaseAction
 from pages.SearchPatientPage import SearchPatientPage
-from utilities.logger import get_logger
+from utilities.logger import log_generator
 
-log = get_logger()
-
+log = log_generator()
 
 class SearchPatientAction(BaseAction):
     def __init__(self, driver):
