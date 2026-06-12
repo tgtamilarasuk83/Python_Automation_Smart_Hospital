@@ -8,7 +8,6 @@ class ContactUsAction(BaseAction):
         super().__init__(driver)
 
     def submit_form(self, name, email, subject, description):
-
         self.click(ContactUsPage.contact_us_btn)
         self.send_keys(ContactUsPage.name, name)
         self.send_keys(ContactUsPage.email, email)
@@ -17,3 +16,5 @@ class ContactUsAction(BaseAction):
         self.click(ContactUsPage.submit)
     def is_success_message_displayed(self):
        return self.is_displayed(ContactUsPage.success_message)
+    def is_Error_message_displayed(self):
+       return self.is_displayed(ContactUsPage.Error_message)

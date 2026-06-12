@@ -125,3 +125,6 @@ class PharmacyBillpageAction(BaseAction):
             if file.endswith(".csv"):
                 os.remove(os.path.join(DOWNLOADS_FOLDER, file))
                 logger.info(f"Deleted old CSV: {file}")
+    def clickMedicinesButton(self):
+        self.click(PharmacyBillPage.medicinesBtn)
+        logger.info("Clicked Medicines button")

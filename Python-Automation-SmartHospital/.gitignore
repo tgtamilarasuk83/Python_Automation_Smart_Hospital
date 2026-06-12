@@ -92,3 +92,6 @@ coverage.xml
 chromedriver.log
 geckodriver.log
 msedgedriver.log
+
+# vscode setting
+.vscode/
