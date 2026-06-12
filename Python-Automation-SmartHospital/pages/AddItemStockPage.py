@@ -21,4 +21,7 @@ class AddNewStockPage:
 
     # TOAST / ALERT
     TOAST_MESSAGE = (By.XPATH, "//div[contains(@class,'toast-message')]")
+    # delete_item
+    Deleteitem = (By.XPATH,'//*[@id="DataTables_Table_0"]/tbody/tr[2]/td[1]')
+    Deletebutton =(By.XPATH,"//tbody/tr[3]/td[1]/div[2]/a[2]/i[1]")
     

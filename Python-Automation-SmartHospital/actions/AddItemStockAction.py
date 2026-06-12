@@ -39,11 +39,12 @@ class AddItemStockAction(BaseAction):
         self.send_keys(AddNewStockPage.DESCRIPTION, description)
 
         self.click(AddNewStockPage.SAVE_BUTTON)
-        self.driver.refresh()
+       
 
     # ---------------- TABLE DATA ---------------- #
 
     def get_row_data(self):
+        self.driver.refresh()
         row_data = []
 
         for i in range(1, 8):
@@ -56,3 +57,23 @@ class AddItemStockAction(BaseAction):
 
         print(row_data)
         return row_data
+    
+    def assetinventory(self):
+        inventory = self.wait_for_clickable(AddNewStockPage.ADD_NEW_STOCK)
+        return inventory.is_displayed()
+    def ToeMessage(self):
+        toemessage = self.wait_for_visibility(AddNewStockPage.TOAST_MESSAGE)
+        return toemessage.is_displayed()
+    
+    def deleteStockitem(self):
+     self.jsclicking(AddNewStockPage.Deletebutton)
+
+     alert = WebDriverWait(self.driver, 10).until(EC.alert_is_present())
+
+     assert alert is not None
+
+     print(alert.text)
+     alert.accept()
+     
+    
+        
