@@ -56,3 +56,7 @@ class BaseAction:
     def wait_for_visible(self, locator, timeout=20):
      return WebDriverWait(self.driver, timeout).until(EC.visibility_of_element_located(locator)
     )
+     
+    def jsclicking(self, locator):
+     element = self.driver.find_element(*locator)
+     self.driver.execute_script("arguments[0].click();", element)
