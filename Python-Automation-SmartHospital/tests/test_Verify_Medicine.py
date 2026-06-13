@@ -28,3 +28,17 @@ def test_invalid_medicine_search(setup):
     verifymed.assertmedicinepage()
     verifymed.searchinvalidmedicine()
     verifymed.medicinestatus("absent")
+    
+def test_delete_medicine(setup):
+    driver=setup
+    logact       = LoginAction(driver)
+    verifymed    = VerifyMedicineAction(driver)
+    pharmacybill = PharmacyBillpageAction(driver)
+    pharmacybill.clickPharmacy()
+    pharmacybill.clickMedicinesButton()
+    verifymed.assertmedicinepage()
+    verifymed.selectmedicine()
+    verifymed.clickdelete()
+    verifymed.alertmessage()
+    verifymed.confirmmessage()
+        
