@@ -48,3 +48,28 @@ class VerifyMedicineAction(BaseAction):
             except:
                 self.logger.warning("Could not verify absent status")
                 return False
+
+    def deletemedicine(self):
+        medicine = get_value("config.ini", "medicine details", "deletablemedicine")
+        expected_msg = get_value("config.ini", "medicine details", "deletesuccess")
+        self.logger.info(f"Deleting medicine: {medicine}")
+        self.send_keys(VerifyMedicinePage.medicinesearchbar, medicine)
+        self.click(VerifyMedicinePage.medicinecheckbox(medicine))
+        self.click(VerifyMedicinePage.deletebutton)
+        self.handle_alert()
+        text = self.get_text(VerifyMedicinePage.deleteconfirmation)
+        return expected_msg.lower() in text.lower()
+
+    def deletenondeletablemedicine(self):
+        medicine = get_value("config.ini", "medicine details", "nondeletablemedicine")
+        self.logger.info(f"Attempting to delete non-deletable medicine: {medicine}")
+        self.send_keys(VerifyMedicinePage.medicinesearchbar, medicine)
+        try:
+            self.click(VerifyMedicinePage.medicinecheckbox(medicine))
+            self.click(VerifyMedicinePage.deletebutton)
+            self.handle_alert()
+            self.logger.warning(f"Medicine '{medicine}' was deleted but should not have been")
+            return False
+        except:
+            self.logger.info(f"Medicine '{medicine}' cannot be deleted as expected")
+            return True
