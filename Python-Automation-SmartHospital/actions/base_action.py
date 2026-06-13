@@ -56,3 +56,5 @@ class BaseAction:
     def wait_for_visible(self, locator, timeout=20):
      return WebDriverWait(self.driver, timeout).until(EC.visibility_of_element_located(locator)
     )
+    def get_url(self):
+        return self.driver.current_url
