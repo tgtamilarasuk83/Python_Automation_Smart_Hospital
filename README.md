@@ -1,0 +1,171 @@
+# Python | Pytest | Selenium | Allure | Pytest-HTML | Data-Driven Testing
+
+## Pytest Selenium Automation Framework
+
+A scalable and maintainable UI automation framework built using **Python**, **Selenium WebDriver**, and **Pytest** for the **Smart Hospital & Research Center** application. This project was developed for learning and implementing modern test automation practices using industry-standard design patterns and tools.
+
+## Features
+
+- Page Object Model (POM) design pattern with a dedicated Actions layer
+- Centralized configuration management using `config.ini`
+- Chrome browser automation with custom download and privacy preferences
+- Explicit and implicit wait strategies via a reusable `BaseAction` class
+- Data-Driven Testing using Excel (`openpyxl`) and CSV data sources
+- Structured logging and debugging support
+- Pytest parametrization for multiple test scenarios (valid/invalid data)
+- Allure Reporting integration
+- Pytest HTML Reporting
+- Parallel execution support using `pytest-xdist`
+
+## Application Under Test
+
+**Smart Hospital & Research Center**
+https://demo.smart-hospital.in/site/login
+
+## Tech Stack
+
+| Technology | Purpose |
+|---|---|
+| Python 3.x | Programming Language |
+| Selenium WebDriver | Browser Automation |
+| Pytest | Test Framework |
+| pytest-xdist | Parallel Test Execution |
+| Allure Reports | Advanced Reporting |
+| Pytest HTML | HTML Reporting |
+| openpyxl | Excel-based Data-Driven Testing |
+| selenium-page-factory | Page Object Support |
+| Logging | Test Execution Logs |
+
+## Project Structure
+
+```
+Python-Automation-SmartHospital
+│
+├── configurations/         # config.ini and config reader
+├── data_files/              # Excel & CSV test data files
+├── pages/                   # Page Object Classes
+├── actions/                 # Reusable Actions (built on BaseAction)
+├── tests/                   # Test Cases & conftest.py (driver setup)
+├── utilities/               # Config reader, Excel/CSV readers, logger
+├── requirements.txt
+└── .gitignore
+```
+
+## Installation
+
+Clone the repository:
+```bash
+git clone <repository-url>
+cd Python-Automation-SmartHospital
+```
+
+Install dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+## Configuration
+
+Update the `configurations/config.ini` file with the application URL, browser, and test data such as ambulance details, login messages, medicine details, and income details:
+
+```ini
+[info]
+url=https://demo.smart-hospital.in/site/login
+browser=chrome
+
+[login details]
+validassertmess = Smart Hospital & Research Center
+invalidmessage = Invalid Username or Password
+emptyfielderrmessage = Username field is required
+```
+
+## Running Tests
+
+### Run All Tests
+```bash
+pytest
+```
+
+### Verbose Execution
+```bash
+pytest -v
+```
+
+### Run a Specific Test File
+```bash
+pytest tests/test_login.py -v
+```
+
+### Parallel Execution
+Run tests using multiple workers:
+```bash
+pytest -n 4
+```
+
+## Generate Reports
+
+### Pytest HTML Report
+```bash
+pytest --html=reports/report.html --self-contained-html
+```
+
+### Allure Report
+```bash
+pytest --alluredir=allure-results
+allure serve allure-results
+```
+
+## Modules Covered
+
+- Login (valid, invalid, empty field scenarios)
+- Add / Search Patient
+- Add Income
+- Add Item Stock
+- Purchase Medicine
+- Verify Medicine
+- Blood Stock & Blood Issue Management
+- Donor Management
+- Ambulance (Add Vehicle, Add Call, Search Call List)
+- Contact Us / Pharmacy Bill
+
+## Sample Test Structure
+
+```python
+@pytest.mark.usefixtures("setup")
+def test_validLogin(setup):
+    driver = setup
+    LogAct = LoginAction(driver)
+    LogAct.validLogin()
+    assert LogAct.assertHome()
+    print("Test Passed")
+```
+
+## Data-Driven Testing
+
+Test data is read from CSV and Excel files in `data_files/` using the helper utilities `csv_reader.py` and `excel_reader.py`, and fed into tests via `@pytest.mark.parametrize`.
+
+## Contributing
+
+Contributions are welcome.
+1. Fork the repository
+2. Create a feature branch
+3. Follow the existing POM + Actions structure
+4. Add proper logging and assertions
+5. Submit a Pull Request
+
+## Future Enhancements
+
+- API Testing Integration
+- Docker Execution Support
+- Cloud Execution (LambdaTest / BrowserStack)
+- CI/CD Integration (GitHub Actions / Jenkins)
+- Advanced Reporting Dashboard
+- Test Analytics Integration
+
+## License
+
+This project is intended for learning and educational purposes.
+
+Built with Python, Selenium, and Pytest for modern UI test automation.
+
+Happy Testing! 🚀
