@@ -11,7 +11,7 @@ class AddIncomeAction(BaseAction):
 
     def __init__(self, driver):
         super().__init__(driver)
-
+    
     def navigate_to_add_income(self):
         finance = self.driver.find_element(*AddIncomePage.finance_menu)
         self.driver.execute_script("arguments[0].scrollIntoView(true);", finance)
