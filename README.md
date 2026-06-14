@@ -1,4 +1,8 @@
-# Python | Pytest | Selenium | Allure | Pytest-HTML | Data-Driven Testing
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Pytest](https://img.shields.io/badge/Pytest-0A9EDC?style=for-the-badge&logo=pytest&logoColor=white)
+![Selenium](https://img.shields.io/badge/Selenium-43B02A?style=for-the-badge&logo=selenium&logoColor=white)
+![Allure](https://img.shields.io/badge/Allure-FF6347?style=for-the-badge&logo=target&logoColor=white)
+![Pytest HTML](https://img.shields.io/badge/Pytest--HTML-FFD700?style=for-the-badge&logo=html5&logoColor=black)
 
 ## Pytest Selenium Automation Framework
 
@@ -49,6 +53,7 @@ Python-Automation-SmartHospital
 ├── utilities/               # Config reader, Excel/CSV readers, logger
 ├── requirements.txt
 └── .gitignore
+└── README.md
 ```
 
 ## Installation
