@@ -1,6 +1,5 @@
 from selenium.webdriver.common.by import By
 
-
 class BloodIssuePage:
 
     blood_bank_menu = (By.XPATH, "//span[normalize-space()='Blood Bank']")
@@ -19,67 +18,20 @@ class BloodIssuePage:
     success_message = (By.XPATH, "//div[contains(@class,'toast-message')]")
     search_box = (By.XPATH, "//input[@class='select2-search__field']")
     first_option = (By.XPATH, "//li[text()='Select']/following-sibling::li[1]")
-    first_row = (
-        By.XPATH,
-        "(//table/tbody/tr)[1]"
-    )
-
-    delete_button = (
-        By.XPATH,
-        "(//i[@class='fa fa-trash'])[1]"
-    )
-
-    delete_message = (
-        By.XPATH,
-        "//div[contains(text(),'Record Deleted Successfully')]"
-    )
-    validation_message = (
-    By.XPATH,
-    "//div[@class='toast toast-error']"
-)
-
+    first_row = (By.XPATH,"(//table/tbody/tr)[1]")
+    delete_button = (By.XPATH,"(//i[@class='fa fa-trash'])[1]")
+    delete_message = (By.XPATH,"//div[contains(text(),'Record Deleted Successfully')]")
+    validation_message = (By.XPATH,"//div[@class='toast toast-error']")
+    
     @staticmethod
     def dynamic_option(option):
-        return (
-            By.XPATH,
-            f"//li[contains(@class,'select2-results__option') and contains(text(),'{option}')]"
-        )
-    new_patient = (
-    By.XPATH,
-    "//span[contains(text(),'New Patient')]"
-)
-
-    name = (
-    By.XPATH,
-    "//label[text()='Name']/following-sibling::input"
-)
-
-    age_year = (
-    By.CSS_SELECTOR,
-    "input[placeholder='Year']"
-)
-
-    age_month = (
-    By.CSS_SELECTOR,
-    "input[placeholder='Month']"
-)
-
-    age_day = (
-    By.CSS_SELECTOR,
-    "input[placeholder='Day']"
-)
-
-    patient_save = (
-    By.XPATH,
-    "(//button[normalize-space()='Save'])[3]"
-)
-
-    add_patient_popup = (
-    By.XPATH,
-    "//h4[contains(text(),'Add Patient')]"
-)
-
-    success_message = (
-    By.XPATH,
-    "//div[contains(@class,'toast-message')]"
-)
+        return (By.XPATH,f"//li[contains(@class,'select2-results__option') and contains(text(),'{option}')]")
+    
+    new_patient = (By.XPATH,"//span[contains(text(),'New Patient')]")
+    name = (By.XPATH,"//label[text()='Name']/following-sibling::input")
+    age_year = (By.CSS_SELECTOR,"input[placeholder='Year']")
+    age_month = (By.CSS_SELECTOR,"input[placeholder='Month']")
+    age_day = (By.CSS_SELECTOR,"input[placeholder='Day']")
+    patient_save = (By.XPATH,"(//button[normalize-space()='Save'])[3]")
+    add_patient_popup = (By.XPATH,"//h4[contains(text(),'Add Patient')]")
+    success_message = (By.XPATH,"//div[contains(@class,'toast-message')]")
