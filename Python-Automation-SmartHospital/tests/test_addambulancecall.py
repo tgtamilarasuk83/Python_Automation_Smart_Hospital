@@ -6,7 +6,7 @@ from utilities.csv_reader import get_data
 
 @pytest.mark.parametrize("patientname,vehicleno,date,chargecate,chargename,standardcharge,note,payment",get_data("AddAmbulanceCallValid.csv"))
 @pytest.mark.usefixtures("setup")
-def test_validSearchAmbulanceCall(setup,patientname,vehicleno,date,chargecate,chargename,standardcharge,note,payment):
+def test_validaddAmbulanceCall(setup,patientname,vehicleno,date,chargecate,chargename,standardcharge,note,payment):
     driver = setup
     logact = LoginAction(driver)
     addact = AddAmmbulanceCallAction(driver)
@@ -15,7 +15,7 @@ def test_validSearchAmbulanceCall(setup,patientname,vehicleno,date,chargecate,ch
     assert addact.assertvalidaddambulancecall()
     print("Test Passed")
 
-def test_invalidSearchAmbulanceCall(setup):
+def test_invalidaddAmbulanceCall(setup):
     driver = setup
     logact = LoginAction(driver)
     addact = AddAmmbulanceCallAction(driver)
@@ -23,5 +23,14 @@ def test_invalidSearchAmbulanceCall(setup):
     addact.invalidaddambulanceccall()
     assert addact.assertinvalidaddambulancecall()
     print("Test Passed")
+
+def test_emptyaddAmbulanceCall(setup):
+    driver = setup
+    logact = LoginAction(driver)
+    addact = AddAmmbulanceCallAction(driver)
+    logact.validLogin()
+    addact.invalidemptyfieldaddambulance()
+    assert addact.assertemptyfieldaddambulancecall()
+    print("Test Passed") 
 
 
