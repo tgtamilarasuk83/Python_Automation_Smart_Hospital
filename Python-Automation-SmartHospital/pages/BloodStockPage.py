@@ -68,3 +68,7 @@ class BloodStockPage:
             By.XPATH,
             f"//td[normalize-space()='{bag}']/parent::tr//button[contains(text(),'Issue')]"
         )
+    validationMessage = (
+    By.XPATH,
+    "//div[contains(@class,'toast-message')]"
+)
