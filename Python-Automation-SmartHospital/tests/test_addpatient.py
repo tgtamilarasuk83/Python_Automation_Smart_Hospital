@@ -11,7 +11,6 @@ patient_data = get_data("AddPatientdetails.xlsx", "Sheet1")
 
 
 # ── Scenario 1: Add patient with valid data ───────────────────────────────
-@allure.feature("Add Patient")
 @pytest.mark.parametrize(
     "name,guardian,gender,dob,phone,email,blood_group,address",
     patient_data
@@ -49,7 +48,6 @@ def test_add_patient_valid(setup, name, guardian, gender, dob,
 
 
 # ── Scenario 2: Submit empty form — assert validation error ───────────────
-@allure.feature("Add Patient")
 def test_add_patient_empty_form(setup):
 
     driver = setup
