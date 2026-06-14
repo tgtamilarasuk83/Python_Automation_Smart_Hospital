@@ -54,6 +54,12 @@ class AddAmmbulanceCallAction(BaseAction):
         self.click(AddAmbulanceCall.savebtn)
         self.log.info("added ambulance call with not filling required field")
     
+    def invalidemptyfieldaddambulance(self):
+        self.click(HomePage.ambulanceBtn)
+        self.click(AmbulancePage.addambulance)
+        self.click(AddAmbulanceCall.savebtn)
+        self.log.info("added ambulance call with empty field")
+    
     def assertvalidaddambulancecall(self):
         self.log.info("Asserted new add ambulance call record")
         return get_value("config.ini","ambulance details","addsuccessmess") in self.get_text(AmbulancePage.successmes)
@@ -61,3 +67,7 @@ class AddAmmbulanceCallAction(BaseAction):
     def assertinvalidaddambulancecall(self):
         self.log.info("Asserted invalid add ambulance call record")
         return get_value("config.ini","ambulance details","invalidmess") in self.get_text(AddAmbulanceCall.invalidmes)
+    
+    def assertemptyfieldaddambulancecall(self):
+        self.log.info("Asserted empty field add ambulance call record")
+        return get_value("config.ini","ambulance details","emptyinvalidmess") in self.get_text(AddAmbulanceCall.emptyfieldinvalid)
