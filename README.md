@@ -3,6 +3,9 @@
 ![Selenium](https://img.shields.io/badge/Selenium-43B02A?style=for-the-badge&logo=selenium&logoColor=white)
 ![Allure](https://img.shields.io/badge/Allure-FF6347?style=for-the-badge&logo=target&logoColor=white)
 ![Pytest HTML](https://img.shields.io/badge/Pytest--HTML-FFD700?style=for-the-badge&logo=html5&logoColor=black)
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
+![Allure](https://img.shields.io/badge/Allure-FF6347?style=for-the-badge&logo=target&logoColor=white)
+![Jenkins](https://img.shields.io/badge/Jenkins-D24939?style=for-the-badge&logo=jenkins&logoColor=white)
 
 ## Pytest Selenium Automation Framework
 
