@@ -2,10 +2,10 @@ from selenium.webdriver.common.by import By
 
 class DonorManagementPage:
 
-    blood_bank_menu = (By.XPATH, "//span[normalize-space()='Blood Bank']")
+    blood_bankmenu = (By.XPATH, "//span[normalize-space()='Blood Bank']")
     donor_details = (By.XPATH, "//a[contains(normalize-space(),'Donor Details')]")
-    add_blood_donor = (By.XPATH, "//a[contains(@onclick,'myModal')]")
-    add_donor_popup = (By.XPATH, "//h4[text()='Add Donor Details']")
+    add_blooddonor = (By.XPATH, "//a[contains(@onclick,'myModal')]")
+    add_donorpopup = (By.XPATH, "//h4[text()='Add Donor Details']")
     donor_name = (By.XPATH, "(//input[@name='donor_name'])[1]")
     date_of_birth = (By.XPATH, "(//input[@name='date_of_birth'])[1]")
     blood_group = (By.XPATH, "(//select[@name='blood_group'])[1]")
