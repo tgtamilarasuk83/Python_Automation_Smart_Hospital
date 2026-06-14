@@ -14,8 +14,6 @@ class AddIncomePage:
     description      = (By.XPATH, "//textarea[@id='description']")
     submit_btn       = (By.XPATH, "//button[@id='add_incomebtn']")
     toast_message    = (By.XPATH, "//div[contains(@class,'toast-message')]")
-
-    # ── First row assertion — newest record always appears at top ─────────
     first_row_name    = (By.XPATH, "//table//tbody/tr[1]/td[1]")
     first_row_invoice = (By.XPATH, "//table//tbody/tr[1]/td[2]")
 
