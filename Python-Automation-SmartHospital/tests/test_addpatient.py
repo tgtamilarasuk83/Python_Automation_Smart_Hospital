@@ -1,3 +1,4 @@
+import re
 import pytest
 import allure
 from actions.LoginAction import LoginAction
@@ -8,6 +9,12 @@ from utilities.logger import log_generator
 log = log_generator()
 
 patient_data = get_data("AddPatientdetails.xlsx", "Sheet1")
+invalid_phone_data = get_data("AddPatientdetails.xlsx", "Sheet2")
+invalid_email_data = get_data("AddPatientdetails.xlsx", "Sheet3")
+# ── Regex for pre-check ───────────────────────────────────────────────────
+EMAIL_REGEX = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$'
+PHONE_REGEX = r'^\d+$'
+
 
 
 # ── Scenario 1: Add patient with valid data ───────────────────────────────
@@ -67,3 +74,71 @@ def test_add_patient_empty_form(setup):
         f"FAIL - Expected validation error, got: '{toast}'"
 
     log.info(f"PASS - Scenario 2: Validation error shown: '{toast}'")
+
+
+# ── Scenario 3: Invalid phone — 8 columns only, no expected_error ─────────
+@allure.feature("Add Patient")
+@pytest.mark.parametrize(
+    "name,guardian,gender,dob,phone,email,blood_group,address",
+    invalid_phone_data
+)
+def test_add_patient_invalid_phone(setup, name, guardian, gender, dob,
+                                   phone, email, blood_group, address):
+
+    driver = setup
+
+    login = LoginAction(driver)
+    login.validLogin()
+    assert login.assertHome(), "Login failed"
+    log.info("Login successful")
+
+    # Regex pre-check — confirm phone has letters
+    assert not re.match(PHONE_REGEX, str(phone)), \
+        f"Test data error — '{phone}' contains only numbers"
+    log.info(f"Confirmed '{phone}' is invalid phone — proceeding")
+
+    patient = AddPatientAction(driver)
+    patient.navigate_to_add_patient()
+    patient.add_patient(
+        name, guardian, gender,
+        dob, phone, email, blood_group, address
+    )
+
+    assert patient.is_phone_error_displayed(), \
+        f"FAIL - Phone error not shown for '{phone}'"
+
+    log.info(f"PASS - Scenario 3: Phone error shown for '{phone}'")
+
+
+# ── Scenario 4: Invalid email — 8 columns only, no expected_error ─────────
+@allure.feature("Add Patient")
+@pytest.mark.parametrize(
+    "name,guardian,gender,dob,phone,email,blood_group,address",
+    invalid_email_data
+)
+def test_add_patient_invalid_email(setup, name, guardian, gender, dob,
+                                   phone, email, blood_group, address):
+
+    driver = setup
+
+    login = LoginAction(driver)
+    login.validLogin()
+    assert login.assertHome(), "Login failed"
+    log.info("Login successful")
+
+    # Regex pre-check — confirm email is invalid
+    assert not re.match(EMAIL_REGEX, str(email)), \
+        f"Test data error — '{email}' is a valid email"
+    log.info(f"Confirmed '{email}' is invalid email via regex — proceeding")
+
+    patient = AddPatientAction(driver)
+    patient.navigate_to_add_patient()
+    patient.add_patient(
+        name, guardian, gender,
+        dob, phone, email, blood_group, address
+    )
+
+    assert patient.is_email_error_displayed(), \
+        f"FAIL - Email error not shown for '{email}'"
+
+    log.info(f"PASS - Scenario 4: Email error shown for '{email}'")

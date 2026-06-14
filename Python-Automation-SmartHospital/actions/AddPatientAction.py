@@ -153,3 +153,24 @@ class AddPatientAction(BaseAction):
         self.enter_address(address)
         self.click_save()
         log.info(f"Add Patient form submitted for: {name}")
+    def is_phone_error_displayed(self):
+       
+        try:
+            self.wait.until(
+                EC.visibility_of_element_located(
+                    AddPatientPage.phone_error))
+            log.info("Phone error message displayed")
+            return True
+        except Exception:
+            log.error("Phone error message NOT displayed")
+            return False
+    def is_email_error_displayed(self):
+        try:
+            self.wait.until(
+                EC.visibility_of_element_located(
+                    AddPatientPage.email_error))
+            log.info("Email error message displayed")
+            return True
+        except Exception:
+            log.error("Email error message NOT displayed")
+            return False
