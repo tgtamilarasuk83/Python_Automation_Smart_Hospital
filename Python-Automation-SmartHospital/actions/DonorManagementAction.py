@@ -1,14 +1,18 @@
 from actions.base_action import BaseAction
 from pages.DonorManagementPage import DonorManagementPage
 from datetime import datetime
+from utilities.logger import log_generator
 
 
 class DonorManagementAction(BaseAction):
+    
+    log = log_generator()
 
     def __init__(self, driver):
         super().__init__(driver)
 
     def clickBloodBankMenu(self):
+        self.log.info("Navigated to Blood Bank module")
         self.click(DonorManagementPage.blood_bankmenu)
 
     def clickDonorDetails(self):
@@ -45,7 +49,7 @@ class DonorManagementAction(BaseAction):
         self.click(DonorManagementPage.save_button)
 
     def addDonor(self,donor_name,dob,blood_group,gender,father_name,contact_number,address):
-
+        
         self.clickAddBloodDonor()
         self.enterDonorName(donor_name)
         self.enterDateOfBirth(dob)
@@ -55,6 +59,8 @@ class DonorManagementAction(BaseAction):
         self.enterContactNumber(contact_number)
         self.enterAddress(address)
         self.clickSaveButton()
+        self.log.info("Donor added successfully")
+
 
     def searchDonor(self, donor_name):
         self.send_keys(DonorManagementPage.search_donor, donor_name)
@@ -67,4 +73,6 @@ class DonorManagementAction(BaseAction):
     
     def verifyDonorName(self, donor_name):
         result = self.get_text(DonorManagementPage.search_result)
+        self.log.info("Verified donor name")
         return donor_name in result
+        
