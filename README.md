@@ -128,18 +128,6 @@ allure serve allure-results
 - Ambulance (Add Vehicle, Add Call, Search Call List)
 - Contact Us / Pharmacy Bill
 
-## Sample Test Structure
-
-```python
-@pytest.mark.usefixtures("setup")
-def test_validLogin(setup):
-    driver = setup
-    LogAct = LoginAction(driver)
-    LogAct.validLogin()
-    assert LogAct.assertHome()
-    print("Test Passed")
-```
-
 ## Data-Driven Testing
 
 Test data is read from CSV and Excel files in `data_files/` using the helper utilities `csv_reader.py` and `excel_reader.py`, and fed into tests via `@pytest.mark.parametrize`.
