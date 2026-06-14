@@ -3,7 +3,6 @@ from pages.BloodStockPage import BloodStockPage
 from selenium.webdriver.common.keys import Keys
 
 
-
 class BloodStockAction(BaseAction):
 
     def __init__(self, driver):
@@ -28,6 +27,7 @@ class BloodStockAction(BaseAction):
         return self.is_displayed(
             BloodStockPage.component_table
         )
+
     def clickAddIcon(self):
         self.click(BloodStockPage.add_icon)
 
@@ -81,9 +81,16 @@ class BloodStockAction(BaseAction):
         return self.is_displayed(
             BloodStockPage.added_bag_number(bag)
         )
+
     def clickIssueButton(self, bag):
         self.click(BloodStockPage.issue_button(bag))
 
     def isBloodIssuePageDisplayed(self):
-        return self.is_displayed(BloodStockPage.issue_date)
-    
+        return self.is_displayed(
+            BloodStockPage.issue_date
+        )
+
+    def getValidationMessage(self):
+        return self.get_text(
+            BloodStockPage.validationMessage
+        )
