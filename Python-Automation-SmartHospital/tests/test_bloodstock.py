@@ -75,4 +75,23 @@ class TestBloodStock:
 
         assert blood_stock.isBagNumberDisplayed(str(bag))
 
-    
+    @pytest.mark.parametrize(
+        "bag",
+        get_csv_data("IssueBag.csv")
+    )
+    def test_blood_issue_navigation(
+        self,
+        setup,
+        bag
+    ):
+        login = LoginAction(setup)
+        blood_issue = BloodIssueAction(setup)
+        blood_stock = BloodStockAction(setup)
+
+        login.validLogin()
+
+        blood_issue.clickBloodBankMenu()
+
+        blood_stock.clickIssueButton(bag[0])
+
+        assert blood_stock.isBloodIssuePageDisplayed()
