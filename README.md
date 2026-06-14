@@ -132,23 +132,12 @@ allure serve allure-results
 
 Test data is read from CSV and Excel files in `data_files/` using the helper utilities `csv_reader.py` and `excel_reader.py`, and fed into tests via `@pytest.mark.parametrize`.
 
-## Contributing
-
-Contributions are welcome.
-1. Fork the repository
-2. Create a feature branch
-3. Follow the existing POM + Actions structure
-4. Add proper logging and assertions
-5. Submit a Pull Request
-
-## Future Enhancements
-
-- API Testing Integration
-- Docker Execution Support
-- Cloud Execution (LambdaTest / BrowserStack)
-- CI/CD Integration (GitHub Actions / Jenkins)
-- Advanced Reporting Dashboard
-- Test Analytics Integration
+## Contributors
+-Tamilarasu
+-Darshan Raj
+-Balamurugan
+-Janani Sri
+-Harini 
 
 ## License
 
