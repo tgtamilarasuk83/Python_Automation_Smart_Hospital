@@ -77,3 +77,5 @@ class BaseAction:
 
     def get_url(self):
         return self.driver.current_url
+    def clear(self, locator):
+        self.wait.until(EC.visibility_of_element_located(locator)).clear()
