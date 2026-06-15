@@ -52,10 +52,9 @@ class BaseAction:
         except:
             return False
 
-        
     def clear(self, locator):
-         self.wait.until(EC.visibility_of_element_located(locator)).clear()
-    
+        self.wait.until(EC.visibility_of_element_located(locator)).clear()
+
     def select_date(self, element, date):
         ele = self.driver.find_element(*element)
         self.driver.execute_script("arguments[0].value=arguments[1];", ele, date)
@@ -71,11 +70,6 @@ class BaseAction:
         )
 
     def wait_for_visible(self, locator, timeout=20):
-     return WebDriverWait(self.driver, timeout).until(EC.visibility_of_element_located(locator)
-    )
-        
-    def clear(self, locator):
-         self.wait.until(EC.visibility_of_element_located(locator)).clear()
         return WebDriverWait(self.driver, timeout).until(
             EC.visibility_of_element_located(locator)
         )
