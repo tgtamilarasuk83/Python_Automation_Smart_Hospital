@@ -71,8 +71,7 @@ class BaseAction:
         )
 
     def wait_for_visible(self, locator, timeout=20):
-     return WebDriverWait(self.driver, timeout).until(EC.visibility_of_element_located(locator)
-    )
+        return WebDriverWait(self.driver, timeout).until(EC.visibility_of_element_located(locator))
         
     def clear(self, locator):
          self.wait.until(EC.visibility_of_element_located(locator)).clear()
