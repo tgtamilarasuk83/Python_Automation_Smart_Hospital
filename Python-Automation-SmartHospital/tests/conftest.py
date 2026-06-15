@@ -20,6 +20,7 @@ def setup():
         "autofill.profile_enabled": False,
         "autofill.credit_card_enabled": False
     }
+    options.add_argument("--window-size=1920,1080")  
     options.add_experimental_option("prefs", prefs)
     options.add_argument("--disable-notifications")
     options.add_argument("--disable-popup-blocking")
