@@ -70,4 +70,5 @@ class AddAmmbulanceCallAction(BaseAction):
     
     def assertemptyfieldaddambulancecall(self):
         self.log.info("Asserted empty field add ambulance call record")
-        return get_value("config.ini","ambulance details","emptyinvalidmess") in self.get_text(AddAmbulanceCall.emptyfieldinvalid)
+        print(self.get_text(AddAmbulanceCall.emptyfieldinvalid))
+        return get_value("config.ini","ambulance details","emptyinvalidmess") in self.get_text(AddAmbulanceCall.invalidmes)

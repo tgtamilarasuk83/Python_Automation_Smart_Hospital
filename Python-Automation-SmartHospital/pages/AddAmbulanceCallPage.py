@@ -24,5 +24,4 @@ class AddAmbulanceCall:
     note = (By.ID,"note")
     savebtn = (By.ID,"formcallbtn")
     invalidmes = (By.XPATH,"//*[@id='toast-container']/div/div/p[2]")
-    emptyfieldinvalid = (By.XPATH,"//*[@id='toast-container'']/div/div/p[1]")
     
