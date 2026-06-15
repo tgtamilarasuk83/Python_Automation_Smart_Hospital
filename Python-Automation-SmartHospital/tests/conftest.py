@@ -4,7 +4,9 @@ from utilities.config_reader import get_value
 
 @pytest.fixture()
 def setup():
+
     options = webdriver.ChromeOptions()
+
     options.add_argument("--headless=new")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
@@ -23,8 +25,11 @@ def setup():
     options.add_argument("--disable-popup-blocking")
 
     driver = webdriver.Chrome(options=options)
-    driver.maximize_window()
+
     driver.implicitly_wait(10)
+
     driver.get(get_value("config.ini", "info", "url"))
+
     yield driver
+
     driver.quit()
