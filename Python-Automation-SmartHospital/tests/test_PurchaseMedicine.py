@@ -4,6 +4,8 @@ from actions.PharmacyBillpageAction import PharmacyBillpageAction
 from actions.PurchaseMedicineAction import PurchaseMedicineAction
 from utilities.excel_reader import get_data
 
+
+@pytest.mark.bala
 @pytest.mark.usefixtures("setup")
 @pytest.mark.parametrize("supplierName,medicineCategory,medicineName,batchNo,expiryMonth,mrp,batchAmount,salePrice,packingQty,quantity,purchasePrice,tax,paymentMode,paymentNote",get_data("PurchaseMedicine.xlsx","Purchase"))
 def test_valid_purchase_medicine(setup,supplierName,medicineCategory,medicineName,batchNo,expiryMonth,mrp,batchAmount,salePrice,packingQty,quantity,purchasePrice,tax,paymentMode,paymentNote):
@@ -24,8 +26,9 @@ def test_valid_purchase_medicine(setup,supplierName,medicineCategory,medicineNam
 
         assert purchaseact.isPurchaseSuccessful(), "Purchase was not successful"
         print("Test Passed")
-        
-@pytest.mark.InvalidPurchase
+
+@pytest.mark.bala
+@pytest.mark.invalid_purchase
 def test_invalid_purchase_medicine(setup):
     driver = setup
     loginact = LoginAction(driver)
