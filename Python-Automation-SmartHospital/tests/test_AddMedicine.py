@@ -7,6 +7,7 @@ from utilities.csv_reader import get_data
 
 
 class TestAddMedicine:
+    @pytest.mark.bala
     @pytest.mark.parametrize(
         "medicineName, medicineCategory, medicineCompany, medicineComposition, "
         "medicineGroup, unit, minLevel, reorderLevel, tax, boxPacking, vat, rackNumber, note",
