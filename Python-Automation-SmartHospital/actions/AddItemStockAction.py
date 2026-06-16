@@ -74,6 +74,3 @@ class AddItemStockAction(BaseAction):
 
      print(alert.text)
      alert.accept()
-     
-    
-        
