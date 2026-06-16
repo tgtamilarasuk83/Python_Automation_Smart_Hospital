@@ -2,7 +2,7 @@ import pytest
 from actions.LoginAction import LoginAction
 from actions.PharmacyBillpageAction import PharmacyBillpageAction
 
-
+@pytest.mark.bala
 def test_pharmacy_bill_page_displayed(setup):
     driver = setup
     loginact = LoginAction(driver)
@@ -15,6 +15,7 @@ def test_pharmacy_bill_page_displayed(setup):
     print("Successfully moved to the Pharmacy Bill page")
 
 
+@pytest.mark.bala
 @pytest.mark.parametrize("patient_name, result", [
     ("Ashok",         "present"),
     ("praveen raj",   "not found"),

@@ -1,15 +1,20 @@
 import pytest
 import os
-import base64
 from selenium import webdriver
 from utilities.config_reader import get_value
 
+# ---------------------------
+# Paths
+# ---------------------------
 DOWNLOADS_FOLDER = os.path.join(os.path.expanduser("~"), "Downloads")
-SCREENSHOT_FOLDER = "Screenshots"
+SCREENSHOT_FOLDER = os.path.join(os.getcwd(), "Screenshots")
 
+
+# ---------------------------
+# WebDriver Setup Fixture
+# ---------------------------
 @pytest.fixture()
 def setup():
-
     options = webdriver.ChromeOptions()
 
     prefs = {
@@ -28,18 +33,7 @@ def setup():
     options.add_argument("--disable-notifications")
     options.add_argument("--disable-popup-blocking")
 
-    # IMPORTANT FIX FOR JENKINS
-    options.add_argument("--headless=new")
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-dev-shm-usage")
-
-    from selenium.webdriver.chrome.service import Service
-    from webdriver_manager.chrome import ChromeDriverManager
-
-    driver = webdriver.Chrome(
-        service=Service(ChromeDriverManager().install()),
-        options=options
-    )
+    driver = webdriver.Chrome(options=options)
 
     driver.maximize_window()
     driver.implicitly_wait(10)
@@ -50,40 +44,32 @@ def setup():
 
     driver.quit()
 
+
+# ---------------------------
+# Screenshot on Failure Hook
+# ---------------------------
 @pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_makereport(item, call):
 
     outcome = yield
     report = outcome.get_result()
 
-    extras = getattr(report, "extras", [])
-
     if report.when == "call" and report.failed:
 
-        driver = item.funcargs.get("setup")
+        driver = item.funcargs.get("setup", None)
 
         if driver:
-
             os.makedirs(SCREENSHOT_FOLDER, exist_ok=True)
 
-            screenshot_file = os.path.join(
-                SCREENSHOT_FOLDER,
-                f"{item.name}.png"
-            )
+            screenshot_name = f"{item.name}.png"
+            screenshot_path = os.path.join(SCREENSHOT_FOLDER, screenshot_name)
 
-            driver.save_screenshot(screenshot_file)
+            driver.save_screenshot(screenshot_path)
 
-            print(f"\nScreenshot Saved : {screenshot_file}")
-
+            # Attach screenshot to HTML report (if pytest-html installed)
             pytest_html = item.config.pluginmanager.getplugin("html")
 
-            with open(screenshot_file, "rb") as image_file:
-                encoded_image = base64.b64encode(
-                    image_file.read()
-                ).decode()
-
-            extras.append(
-                pytest_html.extras.image(encoded_image)
-            )
-
-    report.extras = extras
+            if pytest_html and hasattr(report, "extra"):
+                report.extra.append(
+                    pytest_html.extras.image(screenshot_path)
+                )
